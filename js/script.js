@@ -1,31 +1,54 @@
 /* =====================================
-   VISITOR COUNTER
+   VISITOR COUNTER (Unique Only)
 ===================================== */
 
 const visitorElement = document.getElementById("visitorCount");
 
 if (visitorElement) {
 
-    // Pakai library counter.js via CDN (tambahkan di HTML sebelum script.js)
-    const counter = new Counter({ workspace: "game-aware-campaign" });
+    const WORKSPACE = "game-aware-campaign";
+    const COUNTER   = "game-aware-campaign-visits";
+    const BASE_URL  = `https://api.counterapi.dev/v2/${WORKSPACE}/${COUNTER}`;
+    const FLAG_KEY  = "hasVisited_gameaware";
 
-    counter.up("visits")
-        .then(result => {
+    const alreadyVisited = localStorage.getItem(FLAG_KEY);
 
-            const count = result.value || 0;
+    if (!alreadyVisited) {
 
-            visitorElement.textContent = `${count} Visits`;
+        // Orang baru → increment
+        fetch(`${BASE_URL}/up`)
+            .then(res => res.json())
+            .then(data => {
 
-            localStorage.setItem("visitorCount", count);
+                const count = data.data?.up_count || 0;
 
-            updateDashboard();
-        })
-        .catch(error => {
+                visitorElement.textContent = `${count} Visits`;
+                localStorage.setItem("visitorCount", count);
+                localStorage.setItem(FLAG_KEY, "true"); // tandai sudah berkunjung
+                updateDashboard();
+            })
+            .catch(err => {
+                console.error("Counter Error:", err);
+                visitorElement.textContent = "Visitor N/A";
+            });
 
-            console.error("Visitor Counter Error:", error.message);
+    } else {
 
-            visitorElement.textContent = "Visitor N/A";
-        });
+        // Orang lama → hanya GET, tidak increment
+        fetch(`${BASE_URL}`)
+            .then(res => res.json())
+            .then(data => {
+
+                const count = data.data?.up_count || 0;
+
+                visitorElement.textContent = `${count} Visits`;
+                localStorage.setItem("visitorCount", count);
+                updateDashboard();
+            })
+            .catch(err => {
+                visitorElement.textContent = "Visitor N/A";
+            });
+    }
 }
 
 /* =====================================
