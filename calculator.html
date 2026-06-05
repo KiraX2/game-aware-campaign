@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kendalikan Game-nya, Bukan Hidupmu</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JNY210Y9Y"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2JNY210Y9Y');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="nav-logo">
+            GAME AWARE
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="education.html">Edukasi</a>
+
+            <!-- DROPDOWN -->
+
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Assessment ▼
+                </button>
+
+                <div class="dropdown-content">
+
+                    <a href="warnings.html">
+                        Warning Signs
+                    </a>
+
+                    <a href="pretest.html">
+                        Pre-Test
+                    </a>
+
+                    <a href="selfcheck.html">
+                        Self Check
+                    </a>
+
+                    <a href="posttest.html">
+                        Post-Test
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="calculator.html">Calculator</a>
+            <a href="tips.html">Tips</a>
+            <a href="articles.html">Artikel</a>
+
+        </div>
+
+        <div class="nav-visits">
+
+            <span class="visit-dot"></span>
+
+            <span id="visitorCount">
+                Loading...
+            </span>
+
+        </div>
+
+    </nav>    
+
+    <section class="calculator-page">
+
+        <div class="container">
+
+            <span class="section-label">
+                DIGITAL WELLNESS
+            </span>
+
+            <h2 class="section-title">
+                Gaming Time Calculator
+            </h2>
+
+            <p class="section-subtitle">
+                Hitung berapa banyak waktu yang telah
+                kamu habiskan untuk bermain game.
+            </p>
+
+            <div class="calculator-wrapper">
+
+                <div class="calculator-card">
+
+                    <input
+                        type="number"
+                        id="dailyHours"
+                        placeholder="Jam bermain per hari">
+
+                    <button
+                        class="btn-primary"
+                        onclick="calculateGamingTime()">
+
+                        Hitung
+
+                    </button>
+
+                    <div id="calculatorResult"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <script src="js/script.js"></script>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Cyberpsychology Campaign |
+            Kendalikan Game-nya, Bukan Hidupmu.
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2JNY210Y9Y"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2JNY210Y9Y');
+    </script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="nav-logo">
+            GAME AWARE
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="education.html">Edukasi</a>
+
+            <!-- DROPDOWN -->
+
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Assessment ▼
+                </button>
+
+                <div class="dropdown-content">
+
+                    <a href="warnings.html">
+                        Warning Signs
+                    </a>
+
+                    <a href="pretest.html">
+                        Pre-Test
+                    </a>
+
+                    <a href="selfcheck.html">
+                        Self Check
+                    </a>
+
+                    <a href="posttest.html">
+                        Post-Test
+                    </a>
+
+                </div>
+            </div>
+
+            <a href="calculator.html">Calculator</a>
+            <a href="tips.html">Tips</a>
+            <a href="articles.html">Artikel</a>
+
+        </div>
+
+        <div class="nav-visits">
+
+            <span class="visit-dot"></span>
+
+            <span id="visitorCount">
+                Loading...
+            </span>
+
+        </div>
+
+    </nav>    
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="page">
+
+        <div class="container">
+
+            <span class="section-label">
+                DASHBOARD KAMPANYE
+            </span>
+
+            <h2 class="section-title">
+                Ringkasan Kampanye
+            </h2>
+
+            <p class="section-subtitle">
+                Statistik keterlibatan pengguna dalam kampanye
+                kesadaran adiksi permainan daring.
+            </p>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span class="stat-number"
+                        id="dashboardVisitors">
+
+                        0
+
+                    </span>
+
+                    <p>Total Pengunjung</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span class="stat-number"
+                        id="dashboardPreTest">
+
+                        0
+
+                    </span>
+
+                    <p>Pre-Test Selesai</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span class="stat-number"
+                        id="dashboardSelfCheck">
+
+                        0
+
+                    </span>
+
+                    <p>Self Check Selesai</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span class="stat-number"
+                        id="dashboardPostTest">
+
+                        0
+
+                    </span>
+
+                    <p>Post-Test Selesai</p>
+
+                </div>
+
+            </div>
+            
+            <div class="campaign-progress">
+
+                <h3>Progress Kampanye</h3>
+
+                <div class="progress-bar">
+
+                    <div id="campaignProgressFill"
+                        class="progress-fill">
+                    </div>
+
+                </div>
+
+                <div id="campaignProgressText">
+                    0%
+                </div>
+
+            </div>
+    </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Cyberpsychology Campaign |
+            Kendalikan Game-nya, Bukan Hidupmu.
+        </p>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
