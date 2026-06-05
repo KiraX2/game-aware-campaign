@@ -5,24 +5,26 @@
 const visitorElement = document.getElementById("visitorCount");
 
 if (visitorElement) {
-    fetch("https://api.countapi.xyz/hit/gameawarecampaign/visitor")
-        .then(response => response.json())
-        .then(data => {
 
-            visitorElement.textContent =
-                `${data.value} Visits`;
+    // Pakai library counter.js via CDN (tambahkan di HTML sebelum script.js)
+    const counter = new Counter({ workspace: "game-aware-campaign" });
 
-            localStorage.setItem(
-                "visitorCount",
-                data.value
-            );
+    counter.up("visits")
+        .then(result => {
+
+            const count = result.value || 0;
+
+            visitorElement.textContent = `${count} Visits`;
+
+            localStorage.setItem("visitorCount", count);
 
             updateDashboard();
         })
-        .catch(() => {
+        .catch(error => {
 
-            visitorElement.textContent =
-                "Offline";
+            console.error("Visitor Counter Error:", error.message);
+
+            visitorElement.textContent = "Visitor N/A";
         });
 }
 
