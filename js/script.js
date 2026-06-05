@@ -60,29 +60,110 @@ const answerScale = [
    QUESTION DATA
 ===================================== */
 
+/* Pre-Test Question */
 const preTestQuestions = [
-    {
-        question:
-        "Saya mengetahui apa itu adiksi game online."
-    },
-    {
-        question:
-        "Saya memahami dampak psikologis bermain game berlebihan."
-    },
-    {
-        question:
-        "Saya mengetahui konsep digital well-being."
-    },
-    {
-        question:
-        "Saya memahami pentingnya mengatur waktu bermain."
-    },
-    {
-        question:
-        "Saya mengetahui tanda-tanda kecanduan game."
-    }
+
+{
+    question:
+    "Apa yang dimaksud dengan Gaming Disorder?",
+
+    options:[
+        "Kebiasaan bermain game secara rutin setiap hari",
+        "Kondisi klinis di mana seseorang tidak mampu mengontrol dorongan bermain game hingga mengganggu kehidupan sehari-hari",
+        "Bermain game lebih dari 2 jam sehari",
+        "Rasa suka terhadap game yang sangat kuat"
+    ],
+
+    correct:1
+},
+
+{
+    question:
+    "WHO secara resmi mengakui Gaming Disorder sebagai kondisi klinis pada tahun...",
+
+    options:[
+        "2010",
+        "2014",
+        "2018",
+        "2022"
+    ],
+
+    correct:2
+},
+
+{
+    question:
+    "Dalam teori Online Flow State, apa yang terjadi saat pemain mengalami flow?",
+
+    options:[
+        "Pemain merasa bosan dan ingin berhenti",
+        "Pemain mengalami keterlibatan penuh dan kehilangan rasa waktu",
+        "Pemain merasa stres karena level terlalu sulit",
+        "Pemain terhubung dengan teman secara sosial"
+    ],
+
+    correct:1
+},
+
+{
+    question:
+    "Menurut Self-Regulation Theory, mengapa seseorang bisa gagal membatasi waktu bermain game?",
+
+    options:[
+        "Karena grafis game terlalu menarik",
+        "Karena kapasitas regulasi diri terkuras oleh kelelahan mental dan kebutuhan pelarian emosional",
+        "Karena kurangnya pengawasan orang tua",
+        "Karena harga internet yang terjangkau"
+    ],
+
+    correct:1
+},
+
+{
+    question:
+    "Uses and Gratifications Theory menjelaskan orang bermain game secara berlebihan karena...",
+
+    options:[
+        "Tidak punya kegiatan lain",
+        "Game selalu memberikan hadiah setiap hari",
+        "Game memenuhi kebutuhan psikologis seperti pencapaian, interaksi sosial, dan pelarian dari tekanan",
+        "Tekanan dari komunitas gaming"
+    ],
+
+    correct:2
+},
+
+{
+    question:
+    "Manakah yang BUKAN tanda-tanda Gaming Disorder menurut WHO?",
+
+    options:[
+        "Tidak mampu mengontrol durasi bermain",
+        "Memprioritaskan game di atas tanggung jawab lain",
+        "Bermain game bersama teman secara sosial dan terkontrol",
+        "Terus bermain meskipun menyadari dampak negatifnya"
+    ],
+
+    correct:2
+},
+
+{
+    question:
+    "Prevalensi Gaming Disorder di kalangan remaja Indonesia berdasarkan studi Banda Aceh adalah...",
+
+    options:[
+        "6,7%",
+        "9,9%",
+        "30,8%",
+        "15,3%"
+    ],
+
+    correct:2
+}
+
 ];
 
+/* Self Check Question */
 const selfCheckQuestions = [
     {
         question:
@@ -106,6 +187,7 @@ const selfCheckQuestions = [
     }
 ];
 
+/* Post-Test Question */
 const postTestQuestions = [
     {
         question:
@@ -134,6 +216,10 @@ const postTestQuestions = [
 ===================================== */
 
 const quizAnswers = {};
+
+/* =====================================
+   SELF CHECK QUIZ
+===================================== */
 
 function generateQuiz(
     containerId,
@@ -205,6 +291,394 @@ function generateQuiz(
 
     container.innerHTML = html;
 }
+
+/* =====================================
+   KNOWLEDGE QUIZ
+===================================== */
+
+function generateKnowledgeQuiz(
+    containerId,
+    questions,
+    storageKey,
+    type
+){
+
+    const container =
+    document.getElementById(
+        containerId
+    );
+
+    if(!container) return;
+
+    let html = "";
+
+    questions.forEach(
+    (q,index) => {
+
+        html += `
+        <div class="quiz-card">
+
+            <div class="quiz-question">
+
+                ${index + 1}.
+                ${q.question}
+
+            </div>
+
+            <div class="quiz-options">
+
+                ${q.options.map(
+                    (option,optionIndex) =>
+
+                `
+                <div
+                    class="quiz-option"
+
+                    onclick="
+                    selectKnowledgeAnswer(
+                        '${containerId}',
+                        ${index},
+                        ${optionIndex},
+                        this
+                    )">
+
+                    ${option}
+
+                </div>
+                `
+                ).join("")}
+
+            </div>
+
+        </div>
+        `;
+    });
+
+    html += `
+    <button
+        class="btn-primary"
+        style="margin-top:20px"
+
+        onclick="
+        submitKnowledgeQuiz(
+            '${containerId}',
+            '${storageKey}',
+            '${type}'
+        )">
+
+        Kirim Jawaban
+
+    </button>
+
+    <div
+        id="${containerId}-result">
+    </div>
+    `;
+
+    container.innerHTML =
+    html;
+}
+
+/* =====================================
+   KNOWLEDGE ANSWER
+===================================== */
+
+function selectKnowledgeAnswer(
+    containerId,
+    questionIndex,
+    selectedOption,
+    element
+){
+
+    if(
+        !quizAnswers[
+            containerId
+        ]
+    ){
+
+        quizAnswers[
+            containerId
+        ] = [];
+    }
+
+    quizAnswers[
+        containerId
+    ][questionIndex] =
+    selectedOption;
+
+    const options =
+    element.parentElement
+    .querySelectorAll(
+        ".quiz-option"
+    );
+
+    options.forEach(option => {
+
+        option.classList.remove(
+            "selected"
+        );
+
+    });
+
+    element.classList.add(
+        "selected"
+    );
+}
+
+/* =====================================
+   SUBMIT KNOWLEDGE QUIZ
+===================================== */
+
+function submitKnowledgeQuiz(
+    containerId,
+    storageKey,
+    type
+){
+
+    const answers =
+    quizAnswers[
+        containerId
+    ] || [];
+
+    const questions =
+    type === "pretest"
+    ? preTestQuestions
+    : postTestQuestions;
+
+    /* VALIDASI IDENTITAS */
+
+    if(type === "pretest"){
+
+        const name =
+        document.getElementById(
+            "participantName"
+        )?.value.trim();
+
+        const age =
+        document.getElementById(
+            "participantAge"
+        )?.value;
+
+        const gender =
+        document.getElementById(
+            "participantGender"
+        )?.value;
+
+        const status =
+        document.getElementById(
+            "participantStatus"
+        )?.value;
+
+        const gamingHours =
+        document.getElementById(
+            "gamingHours"
+        )?.value;
+
+        const platforms =
+        document.querySelectorAll(
+            ".platform:checked"
+        );
+
+        if(
+            !name ||
+            !age ||
+            !gender ||
+            !status ||
+            !gamingHours
+        ){
+
+            alert(
+                "Lengkapi data responden terlebih dahulu."
+            );
+
+            return;
+        }
+
+        if(
+            platforms.length === 0
+        ){
+
+            alert(
+                "Pilih minimal satu platform gaming."
+            );
+
+            return;
+        }
+    }
+
+    const answeredQuestions =
+    answers.filter(
+        answer => answer !== undefined
+    ).length;
+
+    if(
+        answeredQuestions <
+        questions.length
+    ){
+
+        alert(
+            "Silakan jawab semua pertanyaan."
+        );
+
+        return;
+    }
+
+    let correct = 0;
+
+    questions.forEach(
+    (question,index) => {
+
+        if(
+            answers[index] ===
+            question.correct
+        ){
+
+            correct++;
+        }
+
+    });
+
+    const score =
+    Math.round(
+        (
+            correct /
+            questions.length
+        ) * 100
+    );
+
+    localStorage.setItem(
+        storageKey,
+        score
+    );
+
+    if(type === "pretest"){
+
+    const participantData = {
+
+        name:
+        document.getElementById(
+            "participantName"
+        ).value,
+
+        age:
+        document.getElementById(
+            "participantAge"
+        ).value,
+
+        gender:
+        document.getElementById(
+            "participantGender"
+        ).value,
+
+        status:
+        document.getElementById(
+            "participantStatus"
+        ).value === "Lainnya"
+
+        ? document.getElementById(
+            "otherStatus"
+        ).value
+
+        : document.getElementById(
+            "participantStatus"
+        ).value,
+
+        gamingHours:
+        document.getElementById(
+            "gamingHours"
+        ).value,
+
+        platforms:
+        [...document.querySelectorAll(
+            ".platform:checked"
+        )].map(
+            item => item.value
+        )
+    };
+
+    localStorage.setItem(
+        "participantData",
+        JSON.stringify(
+            participantData
+        )
+    );
+}
+
+    const result =
+    document.getElementById(
+        `${containerId}-result`
+    );
+
+    if(!result) return;
+
+    let category = "";
+
+    if(score >= 80){
+
+        category =
+        "Pemahaman Baik";
+
+    }else if(
+        score >= 60
+    ){
+
+        category =
+        "Pemahaman Cukup";
+
+    }else{
+
+        category =
+        "Perlu Edukasi Tambahan";
+    }
+
+    result.innerHTML = `
+    <div class="quiz-card">
+
+        <h3>
+            Hasil Tes
+        </h3>
+
+        <p>
+
+            Jawaban Benar:
+            <b>
+            ${correct}
+            /
+            ${questions.length}
+            </b>
+
+        </p>
+
+        <p>
+
+            Nilai:
+            <b>
+            ${score}
+            </b>
+
+        </p>
+
+        <p>
+
+            Kategori:
+            <b>
+            ${category}
+            </b>
+
+        </p>
+
+    </div>
+    `;
+
+    updateDashboard();
+    updateCampaignProgress();
+    showComparison();
+
+}
+
+/* =====================================
+   SELECT ANSWER
+===================================== */
 
 function selectAnswer(
     containerId,
@@ -407,22 +881,61 @@ function showComparison() {
 /* =====================================
    DASHBOARD
 ===================================== */
-
-function updateDashboard() {
+function updateDashboard(){
 
     const visitor =
-        localStorage.getItem(
-            "visitorCount"
-        ) || 0;
+    localStorage.getItem(
+        "visitorCount"
+    ) || 0;
 
     const visitorEl =
-        document.getElementById(
-            "dashboardVisitors"
-        );
+    document.getElementById(
+        "dashboardVisitors"
+    );
 
-    if (visitorEl) {
+    if(visitorEl){
+
         visitorEl.textContent =
-            visitor;
+        visitor;
+    }
+
+    const preEl =
+    document.getElementById(
+        "dashboardPreTest"
+    );
+
+    if(preEl){
+
+        preEl.textContent =
+        localStorage.getItem(
+            "preTestScore"
+        ) ? "1" : "0";
+    }
+
+    const selfEl =
+    document.getElementById(
+        "dashboardSelfCheck"
+    );
+
+    if(selfEl){
+
+        selfEl.textContent =
+        localStorage.getItem(
+            "selfCheckScore"
+        ) ? "1" : "0";
+    }
+
+    const postEl =
+    document.getElementById(
+        "dashboardPostTest"
+    );
+
+    if(postEl){
+
+        postEl.textContent =
+        localStorage.getItem(
+            "postTestScore"
+        ) ? "1" : "0";
     }
 }
 
@@ -538,12 +1051,15 @@ document.addEventListener(
 "DOMContentLoaded",
 () => {
 
+    /* PRE TEST */
+
     if(
         document.getElementById(
         "preTestContainer"
         )
     ){
-        generateQuiz(
+
+        generateKnowledgeQuiz(
             "preTestContainer",
             preTestQuestions,
             "preTestScore",
@@ -551,25 +1067,31 @@ document.addEventListener(
         );
     }
 
+    /* SELF CHECK */
+
     if(
         document.getElementById(
         "selfCheckContainer"
         )
     ){
+
         generateQuiz(
             "selfCheckContainer",
             selfCheckQuestions,
-            "selfcheckScore",
+            "selfCheckScore",
             "selfcheck"
         );
     }
+
+    /* POST TEST */
 
     if(
         document.getElementById(
         "postTestContainer"
         )
     ){
-        generateQuiz(
+
+        generateKnowledgeQuiz(
             "postTestContainer",
             postTestQuestions,
             "postTestScore",
@@ -577,7 +1099,57 @@ document.addEventListener(
         );
     }
 
+    /* PLATFORM GAMING */
+
+    const noGaming =
+    document.querySelector(
+        'input[value="Tidak Bermain"]'
+    );
+
+    const gamingPlatforms =
+    document.querySelectorAll(
+        '.platform:not([value="Tidak Bermain"])'
+    );
+
+    if(noGaming){
+
+        noGaming.addEventListener(
+        "change",
+        function(){
+
+            if(this.checked){
+
+                gamingPlatforms.forEach(
+                platform => {
+
+                    platform.checked = false;
+
+                });
+
+            }
+
+        });
+    }
+
+    gamingPlatforms.forEach(
+    platform => {
+
+        platform.addEventListener(
+        "change",
+        function(){
+
+            if(this.checked){
+
+                noGaming.checked = false;
+
+            }
+
+        });
+
+    });
+
     updateDashboard();
     updateCampaignProgress();
     showComparison();
+
 });

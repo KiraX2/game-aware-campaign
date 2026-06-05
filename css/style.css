@@ -557,11 +557,201 @@ nav{
 
     line-height:1.7;
 }
+/* =====================================
+   Participant Form
+===================================== */
+.participant-form{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:35px;
+
+    margin-bottom:40px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:20px;
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group label{
+
+    font-weight:600;
+
+    font-size:15px;
+}
+
+.form-group input,
+.form-group select{
+
+    background:var(--surface-2);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:15px;
+
+    color:var(--text);
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.form-group input:hover,
+.form-group select:hover{
+
+    border-color:var(--primary);
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    background:
+    rgba(216,90,48,.10);
+}
+
+.form-group option{
+
+    background:var(--surface);
+
+    color:white;
+}
+
+.form-group option{
+
+    background:#1a1a1a;
+
+    color:white;
+}
+
+.form-title{
+
+    grid-column:1 / -1;
+
+    margin-bottom:10px;
+
+    font-size:24px;
+
+    font-weight:700;
+}
+
+.full-width{
+
+    grid-column:1 / -1;
+}
+
+.checkbox-group{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:10px;
+}
+
+.checkbox-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:var(--surface-2);
+
+    border:1px solid var(--border);
+
+    padding:12px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:
+    background .3s,
+    border-color .3s;
+}
+
+.checkbox-item:hover{
+
+    border-color:var(--primary);
+
+    background:
+    rgba(216,90,48,.10);
+}
+
+.checkbox-item input{
+
+    width:18px;
+
+    height:18px;
+
+    flex-shrink:0;
+
+    accent-color:var(--primary);
+
+    transition:none;
+}
+
+.user-info{
+
+    margin-bottom:30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.user-info label{
+
+    font-weight:600;
+}
+
+.user-info input{
+
+    padding:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    background:#111;
+
+    color:white;
+
+    font-size:16px;
+}
 
 /* =====================================
    QUIZ
 ===================================== */
-
 .quiz-container{
 
     max-width:900px;
@@ -1382,5 +1572,18 @@ input[type="number"]{
     .risk-wrapper{
 
         padding:20px;
+    }
+}
+
+@media(max-width:768px){
+
+    .participant-form{
+
+        grid-template-columns:1fr;
+    }
+
+    .full-width{
+
+        grid-column:auto;
     }
 }

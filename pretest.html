@@ -82,23 +82,268 @@
         </div>
 
     </nav>    
-    <!-- PRE TEST -->
-
     <section id="pretest" class="page">
 
         <div class="quiz-container">
 
+            <!-- HEADER -->
+
             <span class="section-label">
-                PRE TEST
+                PRE-TEST
             </span>
 
             <h2>
-                Survei Awal
+                Pengetahuan Awal Tentang Adiksi Game
             </h2>
 
-            <div id="preTestContainer">
+            <p>
+                Jawablah pertanyaan berikut sesuai pengetahuan Anda saat ini.
+            </p>
+
+            <!-- IDENTITAS RESPONDEN -->
+
+            <div class="participant-form">
+
+                <h3 class="form-title">
+                    Data Responden
+                </h3>
+
+                <!-- NAMA -->
+
+                <div class="form-group">
+
+                    <label for="participantName">
+                        Nama / Alias
+                    </label>
+
+                    <input
+                        type="text"
+                        id="participantName"
+                        placeholder="Masukkan nama atau alias">
+
+                </div>
+
+                <!-- USIA -->
+
+                <div class="form-group">
+
+                    <label for="participantAge">
+                        Usia
+                    </label>
+
+                    <select id="participantAge">
+
+                        <option value="">
+                            Pilih Usia
+                        </option>
+
+                        <option value="Di bawah 17 tahun">
+                            Di bawah 17 tahun
+                        </option>
+
+                        <option value="17-20 tahun">
+                            17–20 tahun
+                        </option>
+
+                        <option value="21-25 tahun">
+                            21–25 tahun
+                        </option>
+
+                        <option value="26-30 tahun">
+                            26–30 tahun
+                        </option>
+
+                        <option value="Di atas 30 tahun">
+                            Di atas 30 tahun
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- JENIS KELAMIN -->
+
+                <div class="form-group">
+
+                    <label for="participantGender">
+                        Jenis Kelamin
+                    </label>
+
+                    <select id="participantGender">
+
+                        <option value="">
+                            Pilih Jenis Kelamin
+                        </option>
+
+                        <option value="Laki-laki">
+                            Laki-laki
+                        </option>
+
+                        <option value="Perempuan">
+                            Perempuan
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="participantStatus">
+                        Status Saat Ini
+                    </label>
+
+                    <select id="participantStatus">
+
+                        <option value="">
+                            Pilih Status
+                        </option>
+
+                        <option value="Pelajar SMA/SMK">
+                            Pelajar SMA/SMK
+                        </option>
+
+                        <option value="Mahasiswa">
+                            Mahasiswa
+                        </option>
+
+                        <option value="Pekerja">
+                            Pekerja
+                        </option>
+
+                        <option value="Lainnya">
+                            Lainnya
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- STATUS LAINNYA -->
+
+                <div
+                    class="form-group"
+                    id="otherStatusGroup"
+                    style="display:none;">
+
+                    <label for="otherStatus">
+                        Status Lainnya
+                    </label>
+
+                    <input
+                        type="text"
+                        id="otherStatus"
+                        placeholder="Tuliskan status Anda">
+
+                </div>
+
+                <!-- JAM BERMAIN -->
+
+                <div class="form-group">
+
+                    <label for="gamingHours">
+                        Rata-rata Jam Bermain per Hari
+                    </label>
+
+                    <select id="gamingHours">
+
+                        <option value="">
+                            Pilih Durasi
+                        </option>
+
+                        <option value="Tidak bermain">
+                            Tidak bermain
+                        </option>
+
+                        <option value="< 1 jam">
+                            Kurang dari 1 jam
+                        </option>
+
+                        <option value="1-2 jam">
+                            1–2 jam
+                        </option>
+
+                        <option value="3-4 jam">
+                            3–4 jam
+                        </option>
+
+                        <option value="> 4 jam">
+                            Lebih dari 4 jam
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- PLATFORM -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Platform Gaming yang Paling Sering Digunakan
+                    </label>
+
+                    <div class="checkbox-group">
+
+                        <label class="checkbox-item">
+
+                            <input
+                                type="checkbox"
+                                value="Mobile"
+                                class="platform">
+
+                            Mobile / Smartphone
+
+                        </label>
+
+                        <label class="checkbox-item">
+
+                            <input
+                                type="checkbox"
+                                value="PC"
+                                class="platform">
+
+                            PC / Laptop
+
+                        </label>
+
+                        <label class="checkbox-item">
+
+                            <input
+                                type="checkbox"
+                                value="Console"
+                                class="platform">
+
+                            Console
+
+                        </label>
+
+                        <label class="checkbox-item">
+
+                            <input
+                                type="checkbox"
+                                value="Tidak Bermain"
+                                class="platform">
+
+                            Tidak Bermain Game
+
+                        </label>
+
+                    </div>
+
+                </div>
 
             </div>
+
+            <!-- SOAL PRETEST -->
+
+            <div id="preTestContainer"></div>
+
+            <!-- HASIL -->
+
+            <div id="preTestContainer-result"></div>
 
         </div>
 
