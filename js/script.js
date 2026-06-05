@@ -15,16 +15,13 @@ if (visitorElement) {
 
     if (!alreadyVisited) {
 
-        // Orang baru → increment
         fetch(`${BASE_URL}/up`)
             .then(res => res.json())
             .then(data => {
-
                 const count = data.data?.up_count || 0;
-
                 visitorElement.textContent = `${count} Visits`;
                 localStorage.setItem("visitorCount", count);
-                localStorage.setItem(FLAG_KEY, "true"); // tandai sudah berkunjung
+                localStorage.setItem(FLAG_KEY, "true");
                 updateDashboard();
             })
             .catch(err => {
@@ -34,13 +31,10 @@ if (visitorElement) {
 
     } else {
 
-        // Orang lama → hanya GET, tidak increment
-        fetch(`${BASE_URL}`)
+        fetch(BASE_URL)
             .then(res => res.json())
             .then(data => {
-
                 const count = data.data?.up_count || 0;
-
                 visitorElement.textContent = `${count} Visits`;
                 localStorage.setItem("visitorCount", count);
                 updateDashboard();
@@ -50,7 +44,6 @@ if (visitorElement) {
             });
     }
 }
-
 /* =====================================
    ANSWER SCALE
 ===================================== */
